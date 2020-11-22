@@ -1,3 +1,8 @@
+"""
+TODO:
+    customize help screen
+    add option to schedule tsume
+"""
 import discord
 from discord.ext import commands
 import os
@@ -82,3 +87,4 @@ thr.start()
 
 
 bot.run(DISCORD_TOKEN)
+bot.change_presence(activity=discord.Game(name="Type $help for help"))
