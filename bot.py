@@ -36,9 +36,9 @@ for jsonObj in jsonList:
 @bot.command()
 async def tsume(ctx, *args):
     """Get random tsume."""
-    if len(args) == 0 or arg[0] in tsumeSorted.keys():
+    if len(args) == 0 or args[0] in tsumeSorted.keys():
         if len(args):
-            randomTsumeNum = random.randint(0, len(tsumeSorted[arg[0]])-1)
+            randomTsumeNum = random.randint(0, len(tsumeSorted[args[0]])-1)
             randomTsume = tsumeSorted[args[0]][randomTsumeNum]
         else:
             randomTsumeNum = random.randint(0, len(allTsumes)-1)
