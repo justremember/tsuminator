@@ -57,4 +57,28 @@ async def answer(ctx, arg:int):
     await ctx.send(embed=embed)
 
 
+
+# simple http server for pings
+
+import threading
+
+def serve():
+    import http.server
+    import socketserver
+    from http import HTTPStatus
+
+    PORT = os.getenv("PORT") or 8080
+    class Handler(http.server.SimpleHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(HTTPStatus.OK)
+            self.end_headers()
+            self.wfile.write(b'Tsuminator is up')
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print("serving at port", PORT)
+        httpd.serve_forever()
+
+thr = threading.Thread(target=serve, name='Http')
+thr.start()
+
+
 bot.run(DISCORD_TOKEN)
