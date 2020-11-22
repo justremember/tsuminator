@@ -39,7 +39,7 @@ async def tsume(ctx, *args):
     if len(args) == 0 or arg[0] in tsumeSorted.keys():
         if len(args):
             randomTsumeNum = random.randint(0, len(tsumeSorted[arg[0]])-1)
-            randomTsume = tsumeSorted[arg[0]][randomTsumeNum]
+            randomTsume = tsumeSorted[args[0]][randomTsumeNum]
         else:
             randomTsumeNum = random.randint(0, len(allTsumes)-1)
             randomTsume = allTsumes[randomTsumeNum]
