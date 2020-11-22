@@ -67,7 +67,7 @@ def serve():
     import socketserver
     from http import HTTPStatus
 
-    PORT = os.getenv("PORT") or 8080
+    PORT = int(os.getenv("PORT")) or 8080
     class Handler(http.server.SimpleHTTPRequestHandler):
         def do_GET(self):
             self.send_response(HTTPStatus.OK)
