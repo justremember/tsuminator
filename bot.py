@@ -14,6 +14,7 @@ import csv
 from github import Github
 import itertools
 import io
+import re
 
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
@@ -61,16 +62,28 @@ for jsonObj in itertools.chain(jsonList, qbankList):
     jsonObj['index'] = index
     tsumeSorted[jsonObj['te']].append(jsonObj)
     index += 1
-    
+
 
 @bot.command()
 async def tsume(ctx, *args):
-    """Get random tsume. Optional argument: 1te, 3te, 5te, or 7te."""
-    if len(args) == 0 or args[0].replace('te', '') in tsumeSorted.keys():
+    """Get random tsume. Sample arguments: 3te, 1te, 5, 3-7, or no arguments. Current tsumes are from 1te up to 7te."""
+    if len(args) > 0:
+        matcher = re.match(r'^(\d*)-(\d*)$', args[0])
+        if matcher:
+            lower = int(matcher[1])
+            upper = int(matcher[2])
+    if len(args) == 0 or args[0].replace('te', '') in tsumeSorted.keys() or (matcher and lower <= upper):
         if len(args):
             te = args[0].replace('te', '')
-            randomTsumeNum = random.randint(0, len(tsumeSorted[te])-1)
-            randomTsume = tsumeSorted[te][randomTsumeNum]
+            if matcher:
+                tsumeLists = []
+                for i in tsumeSorted:
+                    if lower <= int(i) and int(i) <= upper:
+                        tsumeLists.append(tsumeSorted[i])
+                randomTsume = random.choice(random.choices(tsumeLists, weights=map(len, tsumeLists))[0])
+            else:
+                randomTsumeNum = random.randint(0, len(tsumeSorted[te])-1)
+                randomTsume = tsumeSorted[te][randomTsumeNum]
         else:
             randomTsumeNum = random.randint(0, len(allTsumes)-1)
             randomTsume = allTsumes[randomTsumeNum]
