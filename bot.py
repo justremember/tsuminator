@@ -21,6 +21,7 @@ DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 QBANK_LINK = os.getenv("QBANK_LINK")
 bot = commands.Bot(command_prefix='$')
+bot.remove_command('help')
 
 allTsumes = []
 tsumeSorted = {'1': [], '3': [], '5': [], '7': []}
@@ -66,7 +67,7 @@ for jsonObj in itertools.chain(jsonList, qbankList):
 
 @bot.command()
 async def tsume(ctx, *args):
-    """Get random tsume. Sample arguments: 3te, 1te, 5, 3-7, or no arguments. Current tsumes are from 1te up to 7te."""
+    """"""
     if len(args) > 0:
         matcher = re.match(r'^(\d*)-(\d*)$', args[0])
         if matcher:
@@ -103,7 +104,6 @@ async def tsume(ctx, *args):
 
 @bot.command()
 async def answer(ctx, arg:int):
-    """Get answer to a tsume. Takes a tsume # as argument"""
     if arg >= 0 and arg < len(allTsumes):
         currTsume = allTsumes[arg]
         if currTsume.get('answer'):
@@ -114,6 +114,20 @@ async def answer(ctx, arg:int):
             imgFile = discord.File(imgObj, filename='SPOILER_' + currTsume['filename_new_a'])
             # embed.set_image(url='attachment://' + currTsume['answerGithub'])
             await ctx.send('Solution to tsume #%s (click to show spoiler)' % arg, file=imgFile)
+
+@bot.command()
+async def help(ctx):
+    embed = discord.Embed(
+            colour = discord.Colour.orange()
+            )
+    embed.set_author(name='Tsuminator Help')
+    embed.add_field(name='$tsume', value='Get random tsume. Sample arguments: 3te, 1te, 5, 3-7, or no argument. Currently available tsumes are from 1te to 7te.', inline=False)
+    embed.add_field(name='$answer', value='Get answer to a tsume. Takes a tsume # as argument.', inline=False)
+    embed.add_field(name='$help', value='Shows this help message.', inline=False)
+    embed.add_field(name='What is tsume?', value='Tsumeshogi are checkmate problems in shogi. More info: http://www.shogi.net/nexus/ladder/help.html', inline=False)
+
+
+    await ctx.send(embed=embed)
 
 
 
