@@ -20,7 +20,7 @@ load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 QBANK_LINK = os.getenv("QBANK_LINK")
-bot = commands.Bot(command_prefix='$', activity=discord.Game('$help'))
+bot = commands.Bot(command_prefix='$', activity=discord.Game('$help | Please message Carl#7846 for support'))
 bot.remove_command('help')
 
 allTsumes = []
