@@ -20,7 +20,7 @@ load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 QBANK_LINK = os.getenv("QBANK_LINK")
-bot = commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='$', activity=discord.Game('$help'))
 bot.remove_command('help')
 
 allTsumes = []
@@ -155,4 +155,3 @@ thr.start()
 
 
 bot.run(DISCORD_TOKEN)
-bot.change_presence(activity=discord.Game(name="Type $help for help"))
