@@ -115,6 +115,15 @@ async def answer(ctx, arg:int):
             # embed.set_image(url='attachment://' + currTsume['answerGithub'])
             await ctx.send('Solution to tsume #%s (click to show spoiler)' % arg, file=imgFile)
 
+
+@bot.command()
+async def pat(ctx):
+    embed = discord.Embed(
+        title='Thanks.',
+        color=0xFF7F7F)
+    embed.set_image(url="https://cdn.discordapp.com/attachments/681810172876029974/792596784413278208/lklk.png")
+    await ctx.send(embed=embed)
+
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(
