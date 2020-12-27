@@ -122,7 +122,7 @@ async def pat(ctx):
         title='Thanks.',
         color=0xFF7F7F)
     embed.set_image(url="https://cdn.discordapp.com/attachments/681810172876029974/792596784413278208/lklk.png")
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed, delete_after=5)
 
 @bot.command()
 async def help(ctx):
