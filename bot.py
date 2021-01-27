@@ -134,6 +134,7 @@ async def help(ctx):
     embed.add_field(name='$answer', value='Get answer to a tsume. Takes a tsume # as argument.', inline=False)
     embed.add_field(name='$help', value='Shows this help message.', inline=False)
     embed.add_field(name='What is tsume?', value='Tsumeshogi are checkmate problems in shogi. More info: http://www.shogi.net/nexus/ladder/help.html', inline=False)
+    embed.add_field(name='Too hard! I want easier problems.', value='Check out https://lishogi.org/study/Ke2kN7y8 for easier tsumeshogi.', inline=False)
 
 
     await ctx.send(embed=embed)
