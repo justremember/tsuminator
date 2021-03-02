@@ -70,13 +70,13 @@ async def tsume(ctx, *args):
     """"""
     isZeroArgs = len(args) == 0
     isArgX = False if isZeroArgs else str(args[0]).lower() == 'x'
-    if !isZeroArgs:
+    if not isZeroArgs:
         matcher = re.match(r'^(\d*)-(\d*)$', args[0])
         if matcher:
             lower = int(matcher[1])
             upper = int(matcher[2])
     if isZeroArgs or args[0].replace('te', '') in tsumeSorted.keys() or (matcher and lower <= upper) or isArgX:
-        if !isZeroArgs and !isArgX:
+        if not isZeroArgs and not isArgX:
             te = args[0].replace('te', '')
             if matcher:
                 tsumeLists = []
