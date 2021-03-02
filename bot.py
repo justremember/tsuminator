@@ -83,7 +83,7 @@ async def tsume(ctx, *args):
                 for i in tsumeSorted:
                     if lower <= int(i) and int(i) <= upper:
                         tsumeLists.append(tsumeSorted[i])
-                randomTsume = random.choice(random.choices(tsume!ists, weights=map(len, tsumeLists))[0])
+                randomTsume = random.choice(random.choices(tsumeLists, weights=map(len, tsumeLists))[0])
             else:
                 randomTsumeNum = random.randint(0, len(tsumeSorted[te])-1)
                 randomTsume = tsumeSorted[te][randomTsumeNum]
