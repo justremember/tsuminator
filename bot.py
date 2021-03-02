@@ -132,7 +132,7 @@ async def help(ctx):
             colour = discord.Colour.orange()
             )
     embed.set_author(name='Tsuminator Help')
-    embed.add_field(name='$tsume', value='Get random tsume. Sample arguments: 3te, 1te, 5, 3-7, or no argument. Currently available tsumes are from 1te to 7te.', inline=False)
+    embed.add_field(name='$tsume', value='Get random tsume. Sample arguments: 3te, 1te, 5, 3-7, or no argument. Currently available tsumes are from 1te to 7te. Also accepts x as argument, to hide the # of moves.', inline=False)
     embed.add_field(name='$answer', value='Get answer to a tsume. Takes a tsume # as argument.', inline=False)
     embed.add_field(name='$help', value='Shows this help message.', inline=False)
     embed.add_field(name='What is tsume?', value='Tsumeshogi are checkmate problems in shogi. More info: http://www.shogi.net/nexus/ladder/help.html', inline=False)
