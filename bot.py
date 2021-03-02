@@ -68,20 +68,22 @@ for jsonObj in itertools.chain(jsonList, qbankList):
 @bot.command()
 async def tsume(ctx, *args):
     """"""
-    if len(args) > 0:
+    isZeroArgs = len(args) == 0
+    isArgX = False if isZeroArgs else str(args[0]).lower() == 'x'
+    if !isZeroArgs:
         matcher = re.match(r'^(\d*)-(\d*)$', args[0])
         if matcher:
             lower = int(matcher[1])
             upper = int(matcher[2])
-    if len(args) == 0 or args[0].replace('te', '') in tsumeSorted.keys() or (matcher and lower <= upper):
-        if len(args):
+    if isZeroArgs or args[0].replace('te', '') in tsumeSorted.keys() or (matcher and lower <= upper) or isArgX:
+        if !isZeroArgs and !isArgX:
             te = args[0].replace('te', '')
             if matcher:
                 tsumeLists = []
                 for i in tsumeSorted:
                     if lower <= int(i) and int(i) <= upper:
                         tsumeLists.append(tsumeSorted[i])
-                randomTsume = random.choice(random.choices(tsumeLists, weights=map(len, tsumeLists))[0])
+                randomTsume = random.choice(random.choices(tsume!ists, weights=map(len, tsumeLists))[0])
             else:
                 randomTsumeNum = random.randint(0, len(tsumeSorted[te])-1)
                 randomTsume = tsumeSorted[te][randomTsumeNum]
@@ -90,7 +92,7 @@ async def tsume(ctx, *args):
             randomTsume = allTsumes[randomTsumeNum]
         embed = discord.Embed(
                 title='Random Tsume #%s' % randomTsume['index'],
-                description='%ste. To get the answer type `$answer %i`' % (randomTsume['te'], randomTsume['index']) ,
+                description='%sTo get the answer type `$answer %i`' % ('' if isArgX else randomTsume['te'] + 'te. ', randomTsume['index']) ,
                 color=0x00ff00)
         if randomTsume.get('question'):
             embed.set_image(url=randomTsume['question'])
